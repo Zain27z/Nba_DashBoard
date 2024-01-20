@@ -1,0 +1,34 @@
+<h1>Analysis</h1>
+
+<div *ngIf="isLoading">
+    <app-global-loader></app-global-loader>
+</div>
+
+<div *ngIf="!isLoading" class="content-full">
+    <div class="na-ctr">
+        <div class="fav-list">
+            <div class="fav" (click)="onFavClick($event)"
+                *ngFor="let item of itemsArray; let i = index; first as isFirst" [ngClass]="{ 'fav-active' : isFirst }">
+                <div class="ques">
+                    <p>{{item.title}}</p>
+                    <span class="material-icons-sharp">add</span>
+                </div>
+                <div class="ans">
+                    <div>
+                        <p *ngIf="item.postedOn">{{item.postedOn}}</p>
+                        <img src="{{item.img}}" alt="article-img" *ngIf="item.img" />
+                        <img class="img2" src="{{item.img2}}" alt="article-img" *ngIf="!item.img && item.img2" />
+                        <p>{{item.body}}</p>
+                    </div>
+                    <div>
+                        <p>Author: {{item.author}}</p>
+                        <a (click)="onReadMoreClick($event)" [attr.data-index]="i">Read more
+                            <span class="material-icons-sharp">arrow_forward_ios</span>
+                        </a>
+                        <!-- <a *ngIf="!item.postedOn" href="{{item.sourceURL}}" target="_blank">Open Source...</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

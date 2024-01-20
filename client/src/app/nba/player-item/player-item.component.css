@@ -1,0 +1,296 @@
+.player-inner .player-stat.hidden-stat {
+    display: none;
+}
+
+.player-outer {
+    background-color: var(--color-background);
+    padding: 10px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    margin-bottom: 20px;
+}
+
+.player-title {
+    box-shadow: var(--box-shadow);
+    background-color: var(--color-white);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    position: relative;
+    border-radius: 13px;
+}
+
+.player-title h1 {
+    font-size: 24px;
+}
+
+.player-title a {
+    position: absolute;
+    height: 100%;
+    width: fit-content;
+    padding: 10px 20px;
+    right: 0;
+    top: 0;
+    border-radius: 0 13px 13px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-primary);
+    font-weight: 700;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 16px;
+    border-left: 2px solid var(--color-light);
+}
+
+.player-title span {
+    transition: all 0.3s ease-in-out;
+    margin-right: 5px;
+}
+
+.player-title a:hover {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 2px 2px;
+    background-color: var(--color-dark-variant-2);
+}
+
+.player-title a:hover span {
+    transform: translateX(-10px);
+}
+
+.player-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2%;
+}
+
+.player-inner .player-stat {
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow);
+    width: 49%;
+    padding: 10px 20px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 13px;
+}
+
+.player-inner .player-stat p:nth-of-type(1) {
+    font-size: 16px;
+}
+
+.player-inner .player-stat p:nth-of-type(2) {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.player-inner .player-stat.info {
+    padding: 10px 20px 4px 20px;
+}
+
+.player-inner .player-stat.info a {
+    height: 100%;
+    width: 100%;
+    padding: 5px 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: normal;
+    gap: 5px;
+    color: var(--color-primary);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 18px;
+    position: relative;
+    font-weight: 700;
+}
+
+.player-inner .player-stat.info a span {
+    transition: all 0.3s ease-in-out;
+}
+
+.player-inner .player-stat.info a:hover span {
+    transform: translateX(5px);
+}
+
+.player-inner .player-stat.player-team {
+    padding: 10px 20px 4px 20px;
+
+}
+
+.player-inner .player-stat.player-team a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-primary);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    font-weight: 700;
+    white-space: nowrap;
+    padding: 0 10px;
+    padding: 4px 20px;
+}
+
+.player-inner .player-stat.player-team a span {
+    transition: all 0.3s ease-in-out;
+    margin-left: 5px;
+}
+
+.player-inner .player-stat.player-team a:hover span {
+    transform: translateX(10px);
+}
+
+.player-stat p:nth-of-type(2) {
+    color: var(--color-dark);
+}
+
+.player-title .fav-btn {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    height: 100%;
+    width: fit-content;
+    white-space: nowrap;
+    border-right: 2px solid var(--color-light);
+    border-radius: 13px 0 0 13px;
+    cursor: pointer;
+}
+
+.player-title .fav-btn span {
+    font-size: 42px;
+    font-weight: 100;
+    transition: all 0.5s ease-in-out;
+    padding: 11px 10px 0 9px;
+    border-radius: 13px 0 0 13px;
+    margin-right: 0;
+    transform: rotate(145deg);
+}
+
+.player-title .fav-btn:hover span {
+    transform: rotate(0deg);
+}
+
+.player-title .fav-btn .star_empty {
+    color: var(--color-dark-variant);
+}
+
+.player-title .fav-btn .star_full {
+    color: goldenrod;
+}
+
+.player-title .fav-btn:has(.star_full) {
+    box-shadow: var(--box-shadow-2);
+    border-right: 4px solid var(--color-light);
+}
+
+.player-title .fav-btn:hover::after {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    color: var(--color-primary);
+    opacity: 1;
+    background-color: var(--color-background);
+    padding: 5px 20px;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow-2);
+}
+
+.player-title .fav-btn:has(.star_full):hover::after {
+    content: 'Remove from Favorites!';
+}
+
+
+.player-title .fav-btn:has(.star_empty):hover::after {
+    content: 'Add to Favorites!';
+}
+
+
+@media screen and (max-width: 1200px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    .player-title h1#player-main-title {
+        font-size: 24px;
+        margin-left: 15%;
+        margin-right: auto;
+    }
+
+    .player-inner .player-stat.hidden-stat {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .player-title h1#player-main-title {
+        margin-left: auto;
+    }
+
+    /* .player-inner .player-stat.hidden-stat {
+        display: flex;
+    } */
+
+    .player-title {
+        margin-top: 90px;
+    }
+
+    .player-title a {
+        width: 100%;
+        border-left: none;
+        top: -90px;
+        background-color: var(--color-white);
+        box-shadow: var(--box-shadow);
+        border-radius: 13px;
+        font-size: 18px;
+    }
+
+    .player-title a:hover {
+        border-radius: 13px;
+    }
+
+    .player-inner .player-stat {
+        width: 100%;
+    }
+
+}
+
+
+@media screen and (max-width: 520px) {
+    .player-title h1#player-main-title {
+        margin-left: auto;
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .player-title h1#player-main-title {
+        margin-left: 50px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+    }
+}

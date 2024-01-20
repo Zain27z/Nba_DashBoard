@@ -1,0 +1,35 @@
+<h1>Transactions</h1>
+
+<div *ngIf="isLoading">
+    <app-global-loader></app-global-loader>
+</div>
+
+<div *ngIf="!isLoading" class="transactions-ctr">
+
+    <div class="t-date" *ngFor="let date of transactionsALL; let i = index;">
+        <h1>{{date.date}}</h1>
+
+        <div class="t-event" *ngFor="let event of date.lines;">
+            <p>{{event.body}}</p>
+
+            <div class="t-tags">
+                <p>Tags: </p>
+                <ng-container *ngFor="let tag of event.tags;">
+                    <a *ngIf="tag[0] == 'team'" class="t-tag a-left" [routerLink]="'/nba/teams/' + tag[2]">
+                        {{tag[1]}}
+                        <span class="material-icons-sharp">arrow_forward_ios</span>
+                    </a>
+                    <a *ngIf="tag[2] == 'not'" class="t-tag a-left" [routerLink]="'/nba/players/player/' + tag[1]">
+                        {{tag[1]}}
+                        <span class="material-icons-sharp">arrow_forward_ios</span>
+                    </a>
+                    <a *ngIf="tag[2] == 'free'" class="t-tag free-agent" [attr.data-tooltip]="'Player is currently a Free Agent.'">
+                        {{tag[1]}}
+                    </a>
+                </ng-container>
+            </div>
+
+        </div>
+
+    </div>
+</div>

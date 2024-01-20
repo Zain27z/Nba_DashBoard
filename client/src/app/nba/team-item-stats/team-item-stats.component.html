@@ -1,0 +1,59 @@
+<h1>Team Advanced Stats</h1>
+
+<div *ngIf="isLoading">
+    <app-global-loader></app-global-loader>
+</div>
+
+<div *ngIf="!isLoading" class="team-outer">
+    <div class="team-title">
+        <h1 id="team-main-title">{{currentTeam!['full_name']}}</h1>
+        <a routerLink="/nba/teams/{{currentTeam!['id']}}">
+            <span class="material-icons-sharp">arrow_back_ios</span>
+            Back to Team Profile
+        </a>
+    </div>
+    
+    <div class="team-inner inner-stats">
+        <div class="team-stat hidden-stat">
+            <p>Name</p>
+            <p>{{currentTeam!['full_name']}}</p>
+        </div>
+        <h1 class="team-stat team-url">
+            <a class="a-left" href="https://www.nba.com/stats/help/glossary" target="_blank">
+                Stats Dictionary
+                <span class="material-icons-sharp">launch</span>
+            </a>
+        </h1>
+        <h1>Team Stats - Advanced</h1>
+        <ng-container *ngFor="let item of stats.advanced | keyvalue">
+            <div class="team-stat-small team-stat" *ngIf="item.key != 'Team' && item.key != 'id'">
+                <p>{{item.key}}</p>
+                <p>{{item.value}}</p>
+            </div>
+        </ng-container>
+
+        <h1>Team Stats - Averages</h1>
+        <ng-container *ngFor="let item of stats.averages | keyvalue">
+            <div class="team-stat-small team-stat" *ngIf="item.key != 'Team' && item.key != 'id'">
+                <p>{{item.key}}</p>
+                <p>{{item.value}}</p>
+            </div>
+        </ng-container>
+
+        <h1>Team Stats - Misc</h1>
+        <ng-container *ngFor="let item of stats.misc | keyvalue">
+            <div class="team-stat-small team-stat" *ngIf="item.key != 'Team' && item.key != 'id'">
+                <p>{{item.key}}</p>
+                <p>{{item.value}}</p>
+            </div>
+        </ng-container>
+
+        <h1>Team Stats - Totals</h1>
+        <ng-container *ngFor="let item of stats.totals | keyvalue">
+            <div class="team-stat-small team-stat" *ngIf="item.key != 'Team' && item.key != 'id'">
+                <p>{{item.key}}</p>
+                <p>{{item.value}}</p>
+            </div>
+        </ng-container>
+    </div>
+</div>

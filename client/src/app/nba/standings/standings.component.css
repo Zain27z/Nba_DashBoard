@@ -1,0 +1,54 @@
+.standings-ctr {
+    background-color: var(--color-background);
+    padding: 10px;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+    margin-bottom: 20px;
+}
+
+.standings-btns {
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+.standings-btns a {
+    padding: 20px 30px;
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow-2);
+    border-radius: 13px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.standings-btns a span {
+    margin: 0 10px;
+    transition: all .3s ease-in-out;
+}
+
+.standings-btns a:first-child:hover span {
+    transform: translateX(-10px);
+}
+
+.standings-btns a:last-child:hover span {
+    transform: translateX(10px);
+}
+
+.standings-btns a:hover {
+    box-shadow: var(--box-shadow);
+    color: var(--color-primary);
+}

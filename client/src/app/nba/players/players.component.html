@@ -1,0 +1,85 @@
+<h1>Players</h1>
+<h3>*Only players under a contract with a team will appear in the table.</h3>
+
+<div *ngIf="isLoading">
+    <app-global-loader></app-global-loader>
+</div>
+
+<div *ngIf="!isLoading" class="players-ctr">
+    <div class="page-btns">
+        <div *ngIf="currentPage > 1" class="page-btn page-back" (click)="onPageBack()">
+            <span class="material-icons-sharp">chevron_left</span>
+        </div>
+        <div title="page" class="page-display">
+            <span>{{currentPage}}</span>
+        </div>
+        <div *ngIf="currentPage < numPages()" class="page-btn page-forward" (click)="onPageForward()">
+            <span class="material-icons-sharp">chevron_right</span>
+        </div>
+    </div>
+    <div class="players-table">
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Player</th>
+                <th>Age</th>
+                <th>Position</th>
+                <th>Current Team</th>
+            </tr>
+            <tr *ngFor="let player of playersSHOWN; let i = index;">
+                <td>{{ ((currentPage - 1) * perPage) + i + 1 }}</td>
+                <td>
+                    <a [attr.data-name]="player['Player']"
+                        routerLink="/nba/players/player/{{player['Player']}}">
+                        <span class="material-icons-sharp before"></span>
+                        {{player['Player']}}
+                        <span class="material-icons-sharp after"></span>
+                    </a>
+                </td>
+                <td>{{player['Age']}}</td>
+                <td>{{player['Pos']}}</td>
+                <td>
+                    <a [attr.data-id]="player['teamID']" routerLink="/nba/teams/{{player['teamID']}}">
+                        <span class="material-icons-sharp before"></span>
+                        {{player['Current Team']}}
+                        <span class="material-icons-sharp after"></span>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="page-btns">
+        <div *ngIf="currentPage > 1" class="page-btn page-back" (click)="onPageBack()">
+            <span class="material-icons-sharp">chevron_left</span>
+        </div>
+        <div title="page" class="page-display">
+            <span>{{currentPage}}</span>
+        </div>
+        <div *ngIf="currentPage < numPages()" class="page-btn page-forward" (click)="onPageForward()">
+            <span class="material-icons-sharp">chevron_right</span>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <table *ngIf="!isLoading">
+    <tr align="center">
+        <th>Name</th>
+        <th>ID</th>
+        <th>Position</th>
+        <th>Team</th>
+        <th>Height feet</th>
+        <th>Height inches</th>
+        <th>Weight pounds</th>
+    </tr>
+    <tr *ngFor="let player of playersArray" align="center">
+        <td>{{player.first_name}} {{player.last_name}}</td>
+        <td>{{player.id}}</td>
+        <td>{{player.position}}</td>
+        <td>{{player.team.abbreviation}} (Use as link -- and del this note xD)</td>
+        <td>{{player.height_feet}}</td>
+        <td>{{player.height_inches}}</td>
+        <td>{{player.weight_pounds}}</td>
+    </tr>
+</table> -->

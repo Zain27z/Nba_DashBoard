@@ -1,0 +1,44 @@
+<div *ngIf="errorMessage != null" class="error">{{errorMessage}}</div>
+<!-- <div class="DEV-ONLY">{{ loginForm.value | json }}</div> -->
+
+<div id="login-ctr">
+    <div class="box">
+        <span class="borderLine"></span>
+        <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+            <h2>Login</h2>
+            <div class="inputBox">
+                <input name="email" type="text" ngModel required email #emailInput="ngModel" />
+                <label for="email">Email
+                    <span *ngIf="emailInput.dirty">
+                        <span class="danger" *ngIf="emailInput.errors?.['required']">is required!</span>
+                        <span class="danger" *ngIf="emailInput.errors?.['email']">is invalid!</span>
+                    </span>
+                </label>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input name="password" type="password" #pass ngModel required #passwordInput="ngModel" [appMinCount]="6" />
+                <label for="password">Password
+                    <span *ngIf="passwordInput.dirty">
+                        <span class="danger" *ngIf="passwordInput.errors?.['appMinCount']"> is too short!</span>
+                    </span>
+                </label>
+                <i></i>
+            </div>
+            <button *ngIf="!isLoggingIn && !isRecoveringPassword" type="submit">Login</button>
+            <button *ngIf="isLoggingIn || isRecoveringPassword" type="submit" disabled class="spinner-ctr">
+                <app-spinner id="spinner"></app-spinner>
+            </button>
+            <span class="material-icons-sharp eye" (click)="togglePassVisibility(pass)">visibility</span>
+            <div class="links">
+                <span>Not a member?</span><a [routerLink]="['/user/register']">Register Here</a>
+            </div>
+            <div class="links recover" *ngIf="!isRecoveringPassword">
+                <span (click)="onRecoverPassword(loginForm)"
+                    data-tooltip="Enter your Email. We will send you recovery instructions."
+                    [ngClass]="!emailInput.errors?.['email'] && !emailInput.errors?.['required'] ? 'valid-recover' : ''">Recover
+                    Password</span>
+            </div>
+        </form>
+    </div>
+</div>

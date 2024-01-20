@@ -1,0 +1,119 @@
+<h1>Team Profile</h1>
+
+<div *ngIf="isLoading">
+    <app-global-loader></app-global-loader>
+</div>
+
+<div *ngIf="!isLoading" class="team-outer">
+    <div class="team-title">
+        <h1 id="team-main-title">{{currentTeam!['full_name']}}</h1>
+        <div class="fav-btn" *ngIf="isAuthenticated">
+            <div *ngIf="starIsLoading"><app-star-loader></app-star-loader></div>
+            <span *ngIf="!starIsLoading && !isFavorite" (click)="onFavTeam($event)"
+                class="material-icons-sharp star_empty">star_border</span>
+            <span *ngIf="!starIsLoading && isFavorite" (click)="onUNfavTeam($event)"
+                class="material-icons-sharp star_full">star</span>
+        </div>
+        <a [routerLink]="['/nba/teams']">
+            <span class="material-icons-sharp">arrow_back_ios</span>
+            Back to Teams
+        </a>
+    </div>
+    <div class="team-inner">
+        <div class="team-stat hidden-stat">
+            <p>Name</p>
+            <p>{{currentTeam!['full_name']}}</p>
+        </div>
+        <div class="grid-full">
+            <div class="team-logo" *ngIf="currentLinks">
+                <img src="{{currentLinks!['logo']}}" alt="team-logo-image">
+            </div>
+            <div class="grid-extra">
+                <div class="grid-line team-stat">
+                    <p>Abbreviation</p>
+                    <p>{{currentTeam!['abbreviation']}}</p>
+                </div>
+                <div class="grid-line team-stat">
+                    <p>City</p>
+                    <p>{{currentTeam!['city']}}</p>
+                </div>
+                <div class="grid-line team-stat">
+                    <p>Conference</p>
+                    <p>{{currentTeam!['conference']}}</p>
+                </div>
+                <div class="grid-line team-stat">
+                    <p>Division</p>
+                    <p>{{currentTeam!['division']}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="team-stat team-url">
+            <p>Official Website</p>
+            <p [attr.data-teamID]="currentTeam!['id']" *ngIf="currentLinks">
+                <a class="a-left" href="{{currentLinks!['href']}}" target="_blank">
+                    Open Website
+                    <span class="material-icons-sharp">launch</span>
+                </a>
+            </p>
+        </div>
+        <div class="team-stat team-url">
+            <p>Team Roster</p>
+            <p [attr.data-teamID]="currentTeam!['id']" class="a-left">
+                <a routerLink="/nba/teams/{{currentTeam!['id']}}/roster">Open Roster
+                    <span class="material-icons-sharp">arrow_forward_ios</span>
+                </a>
+            </p>
+        </div>
+        <div class="team-stat team-url">
+            <p>Stats Dictionary</p>
+            <p class="a-left">
+                <a href="https://www.nba.com/stats/help/glossary" target="_blank">
+                    Open Dictionary
+                    <span class="material-icons-sharp">launch</span>
+                </a>
+            </p>
+        </div>
+        <div class="team-stat team-url">
+            <p>Advanced Stats</p>
+            <p [attr.data-teamID]="currentTeam!['id']" class="a-left">
+                <a routerLink="/nba/teams/{{currentTeam!['id']}}/stats">Open Advanced Stats
+                    <span class="material-icons-sharp">arrow_forward_ios</span>
+                </a>
+            </p>
+        </div>
+        <div class="inner-title">
+            <h1>Main Stats</h1>
+        </div>
+        <ng-container *ngFor="let item of currentStanding | keyvalue">
+            <div *ngIf="item.key == 'Team'" class="team-stat-small team-stat small-highlight">
+                <p>{{'PLACE'}}</p>
+                <p>{{item.value[0]}}</p>
+            </div>
+        </ng-container>
+        <ng-container *ngFor="let item of currentStanding | keyvalue">
+            <div *ngIf="item.key == 'w'" class="team-stat-small team-stat">
+                <p>{{'WINS'}}</p>
+                <p>{{item.value[0]}}</p>
+            </div>
+        </ng-container>
+        <ng-container *ngFor="let item of currentStanding | keyvalue">
+            <div *ngIf="item.key == 'L'" class="team-stat-small team-stat">
+                <p>{{'LOSSES'}}</p>
+                <p>{{item.value[0]}}</p>
+            </div>
+        </ng-container>
+        <ng-container *ngFor="let item of currentStanding | keyvalue">
+            <div *ngIf="item.key == 'WIN%'" class="team-stat-small team-stat">
+                <p>{{'WIN %'}}</p>
+                <p>{{item.value[0]}}</p>
+            </div>
+        </ng-container>
+        <ng-container *ngFor="let item of currentStanding | keyvalue">
+            <div *ngIf="item.key != 'w' && item.key != 'L' && item.key != 'WIN%' && item.key != 'Team'"
+                class="team-stat-small team-stat">
+                <p>{{item.key}}</p>
+                <p>{{item.value[0]}}</p>
+            </div>
+        </ng-container>
+    </div>
+</div>

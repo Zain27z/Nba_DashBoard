@@ -1,0 +1,58 @@
+<div *ngIf="errorMessage != null" class="error">{{errorMessage}}</div>
+
+<!-- <div class="DEV-ONLY">{{ registerForm.value | json }}</div> -->
+
+<div id="register-ctr">
+    <div class="box">
+        <span class="borderLine"></span>
+        <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+            <h2>Register</h2>
+            <div class="inputBox form-group">
+                <input name="username" type="text" ngModel required #usernameInput="ngModel" [appMaxCount]="8" />
+                <label for="username">Username
+                    <span *ngIf="usernameInput.dirty"> <!-- usernameInput.touched -->
+                        <span class="danger" *ngIf="usernameInput.errors?.['appMaxCount']">is too long!</span>
+                    </span>
+                </label>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input name="email" type="text" ngModel required email #emailInput="ngModel" />
+                <label for="email">Email
+                    <span *ngIf="emailInput.dirty">
+                        <span class="danger" *ngIf="emailInput.errors?.['required']">is required!</span>
+                        <span class="danger" *ngIf="emailInput.errors?.['email']">is invalid!</span>
+                    </span>
+                </label>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input name="password" type="password" ngModel required #pass #passwordInput="ngModel" [appMinCount]="6" />
+                <label for="password">Password
+                    <span *ngIf="passwordInput.dirty">
+                        <span class="danger" *ngIf="passwordInput.errors?.['appMinCount']"> is too short!</span>
+                    </span>
+                </label>
+                <i></i>
+            </div>
+            <div class="inputBox">
+                <input name="repeatPassword" type="password" ngModel #rPass required #repeatPasswordInput="ngModel" />
+                <label for="repeatPassword">Repeat Password
+                    <span *ngIf="repeatPasswordInput.dirty">
+                        <span class="danger" *ngIf="repeatPasswordInput.value != passwordInput.value"> must
+                            match!</span>
+                    </span>
+                </label>
+                <i></i>
+            </div>
+            <button *ngIf="!isLoggingIn" type="submit">Register</button>
+            <button *ngIf="isLoggingIn" type="submit" disabled class="spinner-ctr">
+                <app-spinner id="spinner2"></app-spinner>
+            </button>
+            <span class="material-icons-sharp eye" (click)="togglePassVisibility(pass, rPass)">visibility</span>
+            <div class="links">
+                <span>Have an Account?</span><a [routerLink]="['/user/login']">Login Here</a>
+            </div>
+        </form>
+    </div>
+</div>

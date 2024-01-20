@@ -1,0 +1,153 @@
+.transactions-ctr {
+    width: 100%;
+    background-color: var(--color-background);
+    border-radius: 13px;
+    padding: 10px 20px;
+}
+
+.t-date {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.t-date h1 {
+    background-color: var(--color-white);
+    width: 40%;
+    font-size: 20px;
+    border-radius: 13px;
+    padding: 2px 20px;
+    box-shadow: var(--box-shadow);
+    margin: 10px auto;
+}
+
+.t-event {
+    background-color: var(--color-white);
+    width: 100%;
+    margin: 10px;
+    border-radius: 13px;
+    padding: 10px 30px 0 30px;
+    box-shadow: var(--box-shadow);
+    transition: all 0.3s ease-in-out;
+}
+
+.t-event>p {
+    font-size: 18px;
+    color: var(--color-dark);
+    padding: 5px;
+    margin-left: 5px;
+    letter-spacing: 0.025em;
+}
+
+.t-tags {
+    border-top: 2px solid var(--color-light);
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: stretch;
+}
+
+.t-tags>p {
+    font-size: 16px;
+    align-self: center;
+    margin: auto 20px auto 10px;
+}
+
+.t-tag {
+    font-size: 16px;
+    margin-right: 10px;
+    padding: 10px 10px 8px 10px;
+    color: var(--color-primary);
+    margin-bottom: 2px;
+    letter-spacing: 0.025em;
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    justify-content: baseline;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.t-tag span {
+    transition: all 0.3s ease-in-out;
+}
+
+.t-tag:hover span {
+    transform: translateX(10px);
+}
+
+.t-tag.free-agent {
+    color: var(--color-dark-variant);
+    position: relative;
+}
+
+.t-tag.free-agent::after {
+    content: '';
+    opacity: 0;
+}
+
+.t-tag.free-agent:hover::after {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    content: attr(data-tooltip);
+    color: var(--color-primary);
+    opacity: 1;
+    background-color: var(--color-background);
+    padding: 3px 10px;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 250px;
+    text-align: center;
+}
+
+
+
+
+
+@media screen and (max-width: 1200px) {
+    .t-date h1 {
+        width: 60%;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .t-date h1 {
+        width: 100%;
+        font-size: 20px;
+    }
+
+    .t-event {
+        padding: 10px 10px 5px 10px;
+    }
+
+    .t-event>p {
+        font-size: 16px;
+        text-align: center;
+        letter-spacing: normal;
+    }
+
+    .t-tags {
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    .t-tag {
+        font-size: 14px;
+        letter-spacing: normal;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .t-event {
+        padding: 2px;
+    }
+
+    .t-tag span {
+        display: none;
+    }
+}
